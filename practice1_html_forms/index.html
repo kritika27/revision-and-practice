@@ -7,42 +7,42 @@
     <title>Sign Up Form</title>
 </head>
 <body>
-    <form name="register" method="POST" data-netlify="true">
+    <form name="contact" method="POST" data-netlify="true">
         <h1>Sign Up</h1>
         <div>
-            <label>First Name</label>
-            <input type="name" name="name">
+            <label for="fname">First Name</label>
+            <input type="text" name="fname" id="fname">
         </div>
         <div>
-            <label>Last Name</label>
-            <input type="name" name="name">
+            <label for="lname">Last Name</label>
+            <input type="text" name="lname" id="lname">
         </div>
         <div>
-            <label>Email</label>
-            <input type="email" name="email">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
         </div>
         <div>
-            <label>Password</label>
-            <input type="password" name="password">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
         </div>
         <div>
             Gender
             <label for="male">Male</label>
-            <input type="radio" name="gender">
+            <input type="radio" name="gender" id="male">
             <label for="female">Female</label>
-            <input type="radio" name="gender">
+            <input type="radio" name="gender" id="female">
         </div>
         <div>
-            <label>Birthday</label>
-            <input type="date" name="bdate">
+            <label for="bdate">Birthday</label>
+            <input type="date" name="bdate" id="bdate">
         </div>
         <div>
-            <label>Mobile</label>
-            <input type="tel" name="tel">
+            <label for="tel">Mobile</label>
+            <input type="tel" name="tel" id="tel">
         </div>
         <div>
-            <label>Profile Photo</label>
-            <input type="file" name="file">
+            <label for="file">Profile Photo</label>
+            <input type="file" name="file" id="file">
         </div>
         <div>
         <button type="reset">Reset</button>
