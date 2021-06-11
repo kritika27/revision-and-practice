@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import "./App.css";
 
+const arr = () => {
+  let data = localStorage.getItem("data");
+  if (data) return JSON.parse(localStorage.getItem("data"));
+  else return [];
+};
+
 function App() {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(arr);
   const [item, setItem] = useState("");
 
   const handleSubmit = (e) => {
@@ -53,6 +59,11 @@ function App() {
   const remove = (id) => {
     setList(list.filter((el) => el.id !== id));
   };
+
+  React.useEffect(() => {
+    localStorage.setItem("data", JSON.stringify(list));
+  }, [list]);
+
   return (
     <div className="App">
       <h1>Todo List</h1>
@@ -60,9 +71,11 @@ function App() {
         <input
           type="text"
           value={item}
+          placeholder="Enter the task"
+          className="input-item"
           onChange={(e) => setItem(e.target.value)}
         />
-        <button>Add Item</button>
+        <button className="btn">Add Item</button>
       </form>
       <div
         style={{
@@ -77,32 +90,39 @@ function App() {
             .sort((a, b) => (a.isComplete < b.isComplete ? 1 : -1))
             .map((el) => {
               return (
-                <div key={el.id}>
+                <div key={el.id} className="item">
                   <input
                     type="checkbox"
                     onChange={() => checked(el.id)}
                   ></input>
-                  <p>{el.item}</p>
-                  <button onClick={() => editItem(el.id)}>Edit</button>
+                  <p className={el.isComplete ? "complete" : ""}>{el.item}</p>
+
+                  <i
+                    className="fa fa-pencil"
+                    onClick={() => editItem(el.id)}
+                  ></i>
                   {el.edit && (
                     <div>
                       <form>
                         <input
                           type="text"
                           value={el.item}
-                          onChange={() => updateItem(el.id)}
+                          //onChange={{(e) =>{el.item:e.target.value}}}
                         />
                         <button>Submit</button>
                       </form>
                     </div>
                   )}
-                  <button onClick={() => remove(el.id)}>Delete</button>
+
+                  <i className="fa fa-trash" onClick={() => remove(el.id)}></i>
                 </div>
               );
             })}
       </div>
       <div>
-        <button onClick={() => setList("")}>Clear Items</button>
+        <button className="btn" onClick={() => setList("")}>
+          Clear Items
+        </button>
       </div>
     </div>
   );
